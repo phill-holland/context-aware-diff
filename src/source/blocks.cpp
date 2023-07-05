@@ -1,5 +1,6 @@
 #include "blocks.h"
 
+/*
 std::mt19937_64 polymorphic::blocks::block::generator(std::random_device{}());
 
 std::string polymorphic::blocks::block::declare(vars::variables &vars)
@@ -263,3 +264,4 @@ void polymorphic::blocks::block::copy(block &source, std::unordered_map<int, std
     type = source.type;
     parameters = source.parameters;
 }
+*/

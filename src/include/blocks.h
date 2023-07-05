@@ -1,6 +1,3 @@
-#include "variables.h"
-#include "state.h"
-#include "settings.h"
 #include <string>
 #include <random>
 #include <vector>
@@ -20,8 +17,8 @@ namespace polymorphic
         public:
             int type;
 
-            std::vector<vars::variable> variables;
-            std::vector<std::string> parameters;
+            //std::vector<vars::variable> variables;
+            //std::vector<std::string> parameters;
 
         public:            
             block() 
@@ -33,13 +30,14 @@ namespace polymorphic
             {
                 type = 0;
 
-                variables.clear();
-                parameters.clear();
+                //variables.clear();
+                //parameters.clear();
             }
 
-            std::string declare(vars::variables &vars);
+            //std::string declare(vars::variables &vars);
                         
         public:
+        /*
             bool evaulate(state &s);
             
             bool _if(state &s);
@@ -49,6 +47,7 @@ namespace polymorphic
 
         public:
             void copy(block &source, std::unordered_map<int, std::tuple<vars::variable,int>> map);
+            */
         };
     };
 };
