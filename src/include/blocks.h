@@ -1,53 +1,27 @@
 #include <string>
-#include <random>
 #include <vector>
-#include <unordered_map>
 
-#ifndef _POLYMORPHIC_BLOCKS
-#define _POLYMORPHIC_BLOCKS
+#ifndef _DIFF_BLOCKS
+#define _DIFF_BLOCKS
 
-namespace polymorphic
+namespace diff
 {
     namespace blocks
     {
         class block
         {
-            static std::mt19937_64 generator;
-
         public:
-            int type;
-
-            //std::vector<vars::variable> variables;
-            //std::vector<std::string> parameters;
+            std::string identifier;
+            
+            std::vector<std::string> instructions;
+            std::vector<block> children;
 
         public:            
-            block() 
-            { 
-                clear(); 
-            }
-
-            void clear()
-            {
-                type = 0;
-
-                //variables.clear();
-                //parameters.clear();
-            }
-
-            //std::string declare(vars::variables &vars);
-                        
-        public:
-        /*
-            bool evaulate(state &s);
-            
-            bool _if(state &s);
-            bool _loop(state &s);
-
-            void mutate(settings::settings configuration, vars::variables &vars);
+            block() { }
+            ~block() { }
 
         public:
-            void copy(block &source, std::unordered_map<int, std::tuple<vars::variable,int>> map);
-            */
+            void clear();
         };
     };
 };
