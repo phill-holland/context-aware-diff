@@ -11,7 +11,7 @@ namespace diff
         class parser
         {
         public:            
-            parser() { }
+            parser() { }            
             ~parser() { }
             
         public:
