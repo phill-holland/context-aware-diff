@@ -1,0 +1,11 @@
+void function_one()
+{
+    std::cout << "moo";
+    int b = 45;
+}
+
+int function_two()
+{
+    std::cout << "baa";
+    int c = 69;
+}

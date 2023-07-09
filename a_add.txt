@@ -1,0 +1,16 @@
+#include <iostream>
+
+using namespace std;
+
+void main()
+{
+    cout << "hello! \" world!";
+    int c = 145;
+    int g = 444;
+}
+
+int func(int a)
+{
+    int b = a;
+    return b + 5;
+}

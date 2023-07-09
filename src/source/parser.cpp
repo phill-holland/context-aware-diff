@@ -31,41 +31,23 @@ diff::blocks::block diff::parsers::parser::load(std::string filename)
 
 diff::blocks::block diff::parsers::parser::parse(std::string data)
 {
-    // load lines into instructions, until { is reached
-    // look for line before { to get "block identifier", i.e. class name, function name    
-    // 13 10 crlf
-
-
     diff::blocks::block result;
     std::stack<diff::blocks::block*> stack;
     
     stack.push(&result);
 
     char p;
-    std::string current;//, previous;    
+    std::string current;
     int quote_state = 0, line_state = 0;
 
     for(std::string::iterator it = data.begin(); it != data.end(); ++it)
     {        
         if(*it == 13) { }
-        else if((*it == ' ') && (p == ' ') && (quote_state == 0)) { }
+        else if((*it == ' ') && ((p == ' ')||(p == 10)) && (quote_state == 0)) { }
         //else if(*it == 9) { }
-        /*
-        else if(*it == 10)
-        {
-        }
-        else if(*it == ';')
-        */
-        else if((*it == 10) && (p != ';'))//|| (*it == ';'))
+        else if(*it == 10)//((*it == 10) && (p != ';'))
         {
             if(line_state == 0) ++line_state;
-            /*
-            if(current.size() > 0)
-            {
-                result.instructions.push_back(current);
-                previous = current;
-                current.clear();
-            }*/
         }
         else if(*it == '"')
         {
@@ -78,38 +60,32 @@ diff::blocks::block diff::parsers::parser::parse(std::string data)
         }        
         else if (*it == '{')
         {           
-            if((line_state == 1)&&(current.size() >0))
+            if((line_state == 1)&&(current.size() > 0))
             {
                 diff::blocks::block child;            
-                //child = parse(std::string(it + 1, data.end()));
-                child.identifier = current;//previous;
-                
+                child.identifier = current;                
                 current.clear();
 
-                //result.children.push_back(child);
                 stack.top()->children.push_back(child);
                 stack.push(&stack.top()->children.back());
-                //stack.push(child);
+
+                line_state = 0;
             }
         }
         else if(*it == '}')
         {
             if(current.size() > 0)
             {
-                //result.instructions.push_back(current);
                 stack.top()->instructions.push_back(current);
             }
 
             stack.pop();
-            //return result;
         }
         else if(line_state == 1)
         {
             if(current.size() > 0)
             {
-                //result.instructions.push_back(current);
-                stack.top()->instructions.push_back(current);
-                //previous = current;
+                stack.top()->instructions.push_back(current);             
                 current.clear();
             }
 
@@ -117,7 +93,6 @@ diff::blocks::block diff::parsers::parser::parse(std::string data)
             line_state = 0;
         }
         else current.push_back(*it);
-
 
         p = *it;
     }

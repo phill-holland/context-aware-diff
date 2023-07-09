@@ -1,0 +1,16 @@
+#include <iostream>
+
+#define __MOO
+
+class hello 
+{
+    int myvar;
+
+public:
+    hello() { }
+    ~hello() { }
+
+public:
+    void something();
+    int woh { return 0; };
+};
