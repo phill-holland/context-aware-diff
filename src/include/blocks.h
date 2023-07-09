@@ -20,6 +20,8 @@ namespace diff
             block() { }
             ~block() { }
 
+            void compare(block source);
+
         public:
             void clear();
         };
