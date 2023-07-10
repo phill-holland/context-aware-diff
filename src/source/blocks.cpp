@@ -31,7 +31,7 @@ diff::blocks::block diff::blocks::block::compare(block source)
 */
     //std::unordered_map<std::tuple<int,std::string>, int> left;//, right;
     std::unordered_map<std::string,std::vector<int>> left;
-    
+    std::unordered_map<int,std::string> left_lines;
     // instructions
     int idx = 0;
     for(std::vector<std::string>::iterator it = instructions.begin(); it != instructions.end(); ++it)
@@ -41,6 +41,9 @@ diff::blocks::block diff::blocks::block::compare(block source)
         //left[std::tuple<int,std::string>(idx,*it)] = idx;
         if(left.find(temp) != left.end()) left[temp].push_back(idx);
         else left[temp] = { idx };
+        // ***
+        left_lines[idx] = temp;
+
         ++idx;
     }
 
@@ -64,9 +67,16 @@ diff::blocks::block diff::blocks::block::compare(block source)
         {            
             // the line may have changed!!!!! (hello world different!)
             // are surrounding lines the same?
-
             //t.identifier = std::string("+ ") + temp;
-            result.instructions.push_back(std::string("+ ") + temp);
+            // find by line_number in left!
+            std::string out = std::string("+ ") + temp + std::string("\r\n");
+            if(left_lines.find(idx) != left_lines.end())
+            {
+                out += std::string("- ") + left_lines[idx] + std::string("\r\n");
+            }
+            //out += std::string("+ ") + source.identifier + std::string("\r\n");
+
+            result.instructions.push_back(out);//std::string("+ ") + temp);
         }
 
         ++idx;
