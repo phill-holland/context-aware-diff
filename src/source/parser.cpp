@@ -76,7 +76,9 @@ diff::blocks::block diff::parsers::parser::parse(std::string data)
         {
             if(current.size() > 0)
             {
+                //diff::blocks::block b = *stack.top();
                 stack.top()->instructions.push_back(current);
+                current.clear();
             }
 
             stack.pop();
