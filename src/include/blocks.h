@@ -24,6 +24,7 @@ namespace diff
 
         public:
             void clear();
+            void save(std::string filename);
         };
     };
 };

@@ -16,8 +16,6 @@ namespace diff
             
         public:
             blocks::block load(std::string filename);
-
-        protected:
             blocks::block parse(std::string data);
         };
     };

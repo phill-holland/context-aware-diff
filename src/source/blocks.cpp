@@ -141,3 +141,7 @@ diff::blocks::block diff::blocks::block::compare(block source)
 
 // children compare -- for functions/procs only, sort functions on both sides
 // find new functions (function order not important)
+
+void diff::blocks::block::save(std::string filename)
+{
+}
