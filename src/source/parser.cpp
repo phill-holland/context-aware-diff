@@ -55,8 +55,9 @@ diff::blocks::block diff::parsers::parser::parse(std::string data)
             else if (quote_state == 1)
             {
                 if(p != '\\') quote_state = 0;
-                else current.push_back(*it);
+                //else current.push_back(*it);
             }
+            current.push_back(*it);
         }        
         else if (*it == '{')
         {           

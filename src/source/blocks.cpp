@@ -69,10 +69,10 @@ diff::blocks::block diff::blocks::block::compare(block source)
             // are surrounding lines the same?
             //t.identifier = std::string("+ ") + temp;
             // find by line_number in left!
-            std::string out = std::string("+ ") + temp + std::string("\r\n");
+            std::string out = std::string("+ ") + temp + std::string("\n");
             if(left_lines.find(idx) != left_lines.end())
             {
-                out += std::string("- ") + left_lines[idx] + std::string("\r\n");
+                out += std::string("- ") + left_lines[idx] + std::string("\n");
             }
             //out += std::string("+ ") + source.identifier + std::string("\r\n");
 
@@ -134,6 +134,34 @@ diff::blocks::block diff::blocks::block::compare(block source)
         }
 
         ++idx;
+    }
+
+    return result;
+}
+
+std::string diff::blocks::block::output()
+{
+    std::string result;
+
+    if(identifier.size() > 0) 
+    {
+        result += identifier + std::string("\n");
+        result += std::string("{") + std::string("\n");
+    }
+
+    for(std::vector<std::string>::iterator it = instructions.begin(); it != instructions.end(); ++it)
+    {
+        result += *it + std::string("\n");
+    }
+
+    for(std::vector<diff::blocks::block>::iterator it = children.begin(); it != children.end(); ++it)
+    {
+        result += it->output();
+    }
+
+    if(identifier.size() > 0) 
+    {
+        result += std::string("}") + std::string("\n");
     }
 
     return result;

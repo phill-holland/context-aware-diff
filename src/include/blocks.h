@@ -20,10 +20,11 @@ namespace diff
             block() { }
             ~block() { }
 
-            block compare(block source);
-
         public:
             void clear();
+            block compare(block source);
+
+            std::string output();
             void save(std::string filename);
         };
     };
