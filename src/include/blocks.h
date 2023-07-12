@@ -22,9 +22,12 @@ namespace diff
 
         public:
             void clear();
+            
             block compare(block source);
-
+            block prefix(std::string value);
+            
             std::string output();
+
             void save(std::string filename);
         };
     };

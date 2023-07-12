@@ -59,9 +59,13 @@ diff::blocks::block diff::blocks::block::compare(block source)
             }
             else 
             {
+                //std::string out = std::string("+ ") + temp + std::string("\n");
+                //result.instructions.push_back(out);
                 // does not exist, source is removed
                 // or removed
             }
+
+            left[temp] = { };
         }
         else 
         {            
@@ -70,18 +74,38 @@ diff::blocks::block diff::blocks::block::compare(block source)
             //t.identifier = std::string("+ ") + temp;
             // find by line_number in left!
             std::string out = std::string("+ ") + temp + std::string("\n");
-            if(left_lines.find(idx) != left_lines.end())
+            /*if(left_lines.find(idx) != left_lines.end())
             {
                 out += std::string("- ") + left_lines[idx] + std::string("\n");
-            }
+            }*/
             //out += std::string("+ ") + source.identifier + std::string("\r\n");
 
             result.instructions.push_back(out);//std::string("+ ") + temp);
         }
 
+        /*
+        if(left_lines.find(idx) != left_lines.end())
+        {
+            std::string tt = left_lines[idx];
+            if(tt != temp)
+            {
+                std::string out = std::string("+ ") + temp + std::string("\n");
+                result.instructions.push_back(out);
+            }
+        }
+        */
+
         ++idx;
     }
-
+    
+    for(auto &it:left)
+    {
+        if(it.second.size() > 0)
+        {
+            std::string out = std::string("- ") + it.first + std::string("\n");
+            result.instructions.emplace(result.instructions.begin() + it.second.front(),out);
+        }
+    }
     // loop through left hash, anything left over is added
 
 // ****
@@ -128,15 +152,41 @@ diff::blocks::block diff::blocks::block::compare(block source)
         }
         else 
         {
+            /*
             diff::blocks::block t = *it;
             t.identifier = std::string("+ ") + it->identifier;
             result.children.push_back(t);
+            */
+           result.children.push_back(it->prefix(std::string("+ ")));
         }
 
         ++idx;
     }
 
     return result;
+}
+
+diff::blocks::block diff::blocks::block::prefix(std::string value)
+{
+    diff::blocks::block result;
+
+    result.identifier = value + identifier;
+
+    for(std::vector<std::string>::iterator it = instructions.begin(); it != instructions.end(); ++it)
+    {
+        result.instructions.push_back(value + *it);
+    }
+
+    for(std::vector<diff::blocks::block>::iterator it = children.begin(); it != children.end(); ++it)
+    {
+        result.children.push_back(it->prefix(value));
+    }
+
+    return result;
+}
+
+void diff::blocks::block::save(std::string filename)
+{
 }
 
 std::string diff::blocks::block::output()
@@ -170,6 +220,3 @@ std::string diff::blocks::block::output()
 // children compare -- for functions/procs only, sort functions on both sides
 // find new functions (function order not important)
 
-void diff::blocks::block::save(std::string filename)
-{
-}
