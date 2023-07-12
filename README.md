@@ -10,6 +10,7 @@
 - Test for class definitions
 - Test for for loops
 - Test for if statements
+- Reorder functions, but with no changes
 - C# testing
 
 # Running

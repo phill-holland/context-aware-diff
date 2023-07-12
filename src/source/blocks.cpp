@@ -149,6 +149,8 @@ diff::blocks::block diff::blocks::block::compare(block source)
                 // does not exist, source is removed
                 // or removed
             }
+
+            right[temp] = { };
         }
         else 
         {
@@ -161,6 +163,17 @@ diff::blocks::block diff::blocks::block::compare(block source)
         }
 
         ++idx;
+    }
+
+    for(auto &it:right)
+    {
+        if(it.second.size() > 0)
+        {
+            diff::blocks::block tt = children[it.second.front()].prefix(std::string("- "));
+            result.children.emplace(result.children.begin() + it.second.front(),tt);
+            //std::string out = std::string("- ") + it.first + std::string("\n");
+            //result.children.emplace(result.children.begin() + it.second.front(),it.prefix("- "));
+        }
     }
 
     return result;
@@ -192,11 +205,18 @@ void diff::blocks::block::save(std::string filename)
 std::string diff::blocks::block::output()
 {
     std::string result;
+    std::string prefix;
 
     if(identifier.size() > 0) 
-    {
+    {        
+        if(identifier.size() > 1) 
+        {
+            if(identifier[0] == '-') prefix = "- ";
+            else if(identifier[0] == '+') prefix = "+ ";
+        }
+
         result += identifier + std::string("\n");
-        result += std::string("{") + std::string("\n");
+        result += prefix + std::string("{") + std::string("\n");
     }
 
     for(std::vector<std::string>::iterator it = instructions.begin(); it != instructions.end(); ++it)
@@ -211,7 +231,7 @@ std::string diff::blocks::block::output()
 
     if(identifier.size() > 0) 
     {
-        result += std::string("}") + std::string("\n");
+        result += prefix + std::string("}") + std::string("\n");
     }
 
     return result;
