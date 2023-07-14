@@ -1,6 +1,8 @@
 #include "blocks.h"
 #include <unordered_map>
 #include <tuple>
+#include <fstream>
+#include <iostream>
 
 void diff::blocks::block::clear()
 {
@@ -63,6 +65,13 @@ diff::blocks::block diff::blocks::block::compare(block source)
                 //result.instructions.push_back(out);
                 // does not exist, source is removed
                 // or removed
+            }
+
+            int t = left[temp].front();
+            if(t != idx) 
+            {
+                std::string out = std::string("") + temp + std::string("\n");
+                result.instructions.push_back(out);
             }
 
             left[temp] = { };
@@ -200,6 +209,15 @@ diff::blocks::block diff::blocks::block::prefix(std::string value)
 
 void diff::blocks::block::save(std::string filename)
 {
+    std::ofstream source(filename, std::ios::out | std::ios::binary);
+    if(!source) return;
+
+    std::string data = output();
+    if(data.size() <= 0) return;
+
+    source.write(data.c_str(), data.size());
+
+    source.close();
 }
 
 std::string diff::blocks::block::output()
