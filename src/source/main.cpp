@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string.h>
 #include "parser.h"
-#include "parser2.h"
-#include "blocks.h"
+#include "instruction.h"
 
 using namespace std;
 
@@ -24,7 +23,7 @@ void main()
     int c = 145;
 })";
 
-    diff::parsers::parser2 p1;
+    diff::parsers::parser p1;
     diff::blocks::instruction i = p1.parse(program);
     //diff::blocks::block a = p1.load("a.txt");
 

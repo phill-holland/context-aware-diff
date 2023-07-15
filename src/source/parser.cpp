@@ -5,9 +5,9 @@
 
 using namespace std;
 
-diff::blocks::block diff::parsers::parser::load(std::string filename)
+diff::blocks::instruction diff::parsers::parser::load(std::string filename)
 {
-    diff::blocks::block result;
+    diff::blocks::instruction result;
 
     ifstream source(filename, ios::in | ios::binary);
     if(!source) return result;
@@ -29,10 +29,10 @@ diff::blocks::block diff::parsers::parser::load(std::string filename)
     return result;
 }
 
-diff::blocks::block diff::parsers::parser::parse(std::string data)
+diff::blocks::instruction diff::parsers::parser::parse(std::string data)
 {
-    diff::blocks::block result;
-    std::stack<diff::blocks::block*> stack;
+    diff::blocks::instruction result;
+    std::stack<diff::blocks::instruction*> stack;
     
     stack.push(&result);
 
@@ -44,8 +44,7 @@ diff::blocks::block diff::parsers::parser::parse(std::string data)
     {        
         if(*it == 13) { }
         else if((*it == ' ') && ((p == ' ')||(p == 10)) && (quote_state == 0)) { }
-        //else if(*it == 9) { }
-        else if(*it == 10)//((*it == 10) && (p != ';'))
+        else if(*it == 10)
         {
             if(line_state == 0) ++line_state;
         }
@@ -55,7 +54,6 @@ diff::blocks::block diff::parsers::parser::parse(std::string data)
             else if (quote_state == 1)
             {
                 if(p != '\\') quote_state = 0;
-                //else current.push_back(*it);
             }
             current.push_back(*it);
         }        
@@ -63,8 +61,8 @@ diff::blocks::block diff::parsers::parser::parse(std::string data)
         {           
             if((line_state == 1)&&(current.size() > 0))
             {
-                diff::blocks::block child;            
-                child.identifier = current;                
+                diff::blocks::instruction child;            
+                child.instr = current;                
                 current.clear();
 
                 stack.top()->children.push_back(child);
@@ -77,8 +75,9 @@ diff::blocks::block diff::parsers::parser::parse(std::string data)
         {
             if(current.size() > 0)
             {
-                //diff::blocks::block b = *stack.top();
-                stack.top()->instructions.push_back(current);
+                diff::blocks::instruction child;
+                child.instr = current;
+                stack.top()->children.push_back(child);
                 current.clear();
             }
 
@@ -88,7 +87,9 @@ diff::blocks::block diff::parsers::parser::parse(std::string data)
         {
             if(current.size() > 0)
             {
-                stack.top()->instructions.push_back(current);             
+                diff::blocks::instruction child;
+                child.instr = current;
+                stack.top()->children.push_back(child);
                 current.clear();
             }
 

@@ -2,15 +2,17 @@
 
 # Todo
 
-- Mark whole function as added/removed (not just identifier)
+- OK Mark whole function as added/removed (not just identifier)
 - Test for removal of a function
 - Function with duplicate code on two lines
-- Test for multiple line inserts
-- Test for multiple line removes
+- OK Test for multiple line inserts
+- OK Test for multiple line removes
 - Test for class definitions
-- Test for for loops
+- OK Test for for loops
 - Test for if statements
+- Update cmdline parameters, input two filenames, output to std::out
 - Test for "functionally the same" Reorder functions, but with no changes
+- Concurrent/async differences 
 - C# testing
 
 # Running

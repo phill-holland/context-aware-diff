@@ -1,4 +1,4 @@
-#include "blocks.h"
+#include "instruction.h"
 #include <string>
 
 #ifndef _DIFF_PARSER
@@ -15,8 +15,8 @@ namespace diff
             ~parser() { }
             
         public:
-            blocks::block load(std::string filename);
-            blocks::block parse(std::string data);
+            blocks::instruction load(std::string filename);
+            blocks::instruction parse(std::string data);
         };
     };
 };
