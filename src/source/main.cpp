@@ -7,30 +7,29 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {  
-std::string program = R"(#include <iostream>
+    std::string output;
 
-using namespace std;
-
-void main()
-{
-    cout << "hello! \" world!";
-    int w = 0;
-    for(int a = 10; a < 100; ++a)
+    if (argc >= 2)
     {
-        w = w * 2;
-        cout << "weeeeee!";
+        string file1(argv[1]);
+        diff::parsers::parser p1;        
+        diff::blocks::instruction a = p1.load(file1);
+
+        if(!a.isempty())
+        {
+            string file2(argv[2]);
+            diff::parsers::parser p2;        
+            diff::blocks::instruction b = p2.load(file2);
+
+            if(!b.isempty())
+            {
+                diff::blocks::instruction c = a.compare(b);
+                output = c.output();
+            }        
+        }
     }
-    int c = 145;
-})";
 
-    diff::parsers::parser p1;
-    diff::blocks::instruction i = p1.parse(program);
-    //diff::blocks::block a = p1.load("a.txt");
-
-    //diff::parsers::parser p2;
-    //diff::blocks::block b = p2.load("a_add.txt");
-
-    //diff::blocks::block c = a.compare(b);
-      
+    std::cout << output;
+     
     return 0;
 }

@@ -21,6 +21,11 @@ namespace diff
         public:
             void clear();
             
+            bool isempty() 
+            {
+                return ((instr.size() == 0) && (children.size() == 0));
+            }
+
             instruction compare(instruction source);
             instruction prefix(std::string value);
             

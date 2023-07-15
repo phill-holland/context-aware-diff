@@ -10,9 +10,10 @@
 - Test for class definitions
 - OK Test for for loops
 - Test for if statements
-- Update cmdline parameters, input two filenames, output to std::out
+- OK Update cmdline parameters, input two filenames, output to std::out
 - Test for "functionally the same" Reorder functions, but with no changes
 - Concurrent/async differences 
+- Update for streaming input
 - C# testing
 
 # Running
