@@ -320,21 +320,7 @@ int w = 0;
 + }
 int c = 145;
 })";
-/*
-"#include <iostream>
-using namespace std;
-void main()
-{
-    cout << \"hello! \\\" world!\";
-    int w = 0;
-    + for(int a = 10; a < 100; ++a)
-    + {
-    + w = w * 2;
-    + cout << \"weeeeee!\";
-    + }
-int c = 145;}
-}"
-*/
+
     diff::parsers::parser2 p1;
     diff::blocks::instruction a = p1.parse(program1);
 
@@ -346,6 +332,8 @@ int c = 145;}
 
     expected.erase(std::remove(expected.begin(), expected.end(), '\n'), expected.cend());
     result.erase(std::remove(result.begin(), result.end(), '\n'), result.cend());
+
+    c.save("output.diff");
 
     EXPECT_TRUE(result == expected);
 }
