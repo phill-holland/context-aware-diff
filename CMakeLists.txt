@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(polymorphic)
+project(diff)
 
 set(CMAKE_BUILD_TYPE "Debug")
 
