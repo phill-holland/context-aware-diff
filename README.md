@@ -6,7 +6,7 @@ Designed to work on programming languages which using curly brackets to denote c
 
 The code is loaded with a parser and into a tree like structure, with spaces and tabs striped.
 
-The original idea was the need for a diff tool for files which may be reorganised but functionally the program would remain the same, but the procedure definition blocks could be implemented in different positions (however this feature still needs to be implemented here, the method however should make this trivial).
+The original idea was the need for a diff tool for files which may be reorganised but functionally the program would remain the same, but the procedure definition blocks could be implemented in different positions (however this feature still needs to be implemented here, the method however should make this trival).
 
 Work in progress!
 
