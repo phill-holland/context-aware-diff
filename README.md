@@ -18,6 +18,8 @@ diff filename1 filename2
 
 A combined output, using the simple notion of + to highlight when a line is added, or - to highlight when a line is removed.
 
+Note! Current implementation output stripes spaces and tabs from original source  files(due to the algorithm implemented to determine the differences)
+
 # Todo
 
 - OK Mark whole function as added/removed (not just identifier)
