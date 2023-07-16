@@ -21,13 +21,13 @@ A combined output, using the simple notion of + to highlight when a line is adde
 # Todo
 
 - OK Mark whole function as added/removed (not just identifier)
-- Test for removal of a function
+- OK Test for removal of a function
 - Function with duplicate code on two lines
 - OK Test for multiple line inserts
 - OK Test for multiple line removes
 - Test for class definitions
 - OK Test for for loops
-- Test for if statements
+- OK Test for if statements
 - OK Update cmdline parameters, input two filenames, output to std::out
 - Test for "functionally the same" Reorder functions, but with no changes
 - Concurrent/async differences 
