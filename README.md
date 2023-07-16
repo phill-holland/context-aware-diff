@@ -2,7 +2,7 @@
 
 A simple proof-of-concept diff tool implementation in C++, explicitly for code files, to help simplify and improve the output from traditional diff algorithms.
 
-Designed to work on programming languages which using curly brackets to denote code blocks and semi-colons to end statements.
+Designed to work on programming languages which using curly brackets to denote code blocks and semi-colons to end statements (for example languages like C++, C#, Java, etc..)
 
 The code is loaded with a parser and into a tree like structure, with spaces and tabs striped.
 
