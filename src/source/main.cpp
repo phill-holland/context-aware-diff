@@ -3,21 +3,19 @@
 #include "parser.h"
 #include "instruction.h"
 
-using namespace std;
-
 int main(int argc, char *argv[])
 {  
     std::string output;
 
     if (argc >= 2)
     {
-        string file1(argv[1]);
+        std::string file1(argv[1]);
         diff::parsers::parser p1;        
         diff::blocks::instruction a = p1.load(file1);
 
         if(!a.isempty())
         {
-            string file2(argv[2]);
+            std::string file2(argv[2]);
             diff::parsers::parser p2;        
             diff::blocks::instruction b = p2.load(file2);
 
