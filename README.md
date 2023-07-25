@@ -10,6 +10,14 @@ The original idea was the need for a diff tool for files which may be reorganise
 
 Work in progress!
 
+See Go version here;
+
+https://www.github.com/phill-holland/go-context-aware-diff
+
+And the rust version;
+
+https://www.github.com/phill-holland/rust-context-aware-diff
+
 # Usage
 
 diff filename1 filename2

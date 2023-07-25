@@ -40,15 +40,13 @@ diff::blocks::instruction diff::blocks::instruction::compare(instruction source)
             }
             else 
             {
-                // does not exist, source is removed
-                // or removed
             }
 
             int t = right[temp].front();
             if(t != idx) 
             {
                 diff::blocks::instruction ttt;
-                ttt.instr = std::string("") + temp + std::string("\n");
+                ttt.instr = std::string("") + temp;
                 result.children.push_back(ttt);
             }
 
